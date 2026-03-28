@@ -1,0 +1,175 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TOC from '../components/TOC.astro';
+import PostNav from '../components/PostNav.astro';
+import TagList from '../components/TagList.astro';
+import { categories } from '../utils/data/categories';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  modified?: Date;
+  author?: string;
+  category: string;
+  tags: string[];
+  cover?: string;
+  toc?: boolean;
+  keywords?: string[];
+  readingTime?: number;
+  nextPost?: { slug: string; title: string };
+  prevPost?: { slug: string; title: string };
+  headings?: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const {
+  title,
+  description,
+  date,
+  modified,
+  author = '杰哥 AI TEAM',
+  category,
+  tags,
+  cover,
+  toc = true,
+  keywords,
+  readingTime,
+  nextPost,
+  prevPost,
+  headings = [],
+} = Astro.props;
+
+const categoryInfo = categories.find(c => c.id === category);
+const formattedDate = date.toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// 计算阅读时间
+const estimatedReadingTime = readingTime || 5;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={cover}
+  date={date}
+  modified={modified}
+  author={author}
+  category={category}
+  tags={tags}
+  keywords={keywords}
+>
+  <!-- 面包屑导航 -->
+  <nav class="mb-4">
+    <ol class="flex items-center gap-2 text-sm text-text-muted">
+      <li>
+        <a href="/" class="hover:text-primary transition-colors">首页</a>
+      </li>
+      <li>/</li>
+      <li>
+        <a href={`/category/${category}`} class="hover:text-primary transition-colors">
+          {categoryInfo?.name || category}
+        </a>
+      </li>
+      <li>/</li>
+      <li class="text-text-primary truncate">{title}</li>
+    </ol>
+  </nav>
+  
+  <!-- 文章头部 -->
+  <header class="mb-6 md:mb-8">
+    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mb-3 md:mb-4 leading-tight">
+      {title}
+    </h1>
+    
+    <div class="flex flex-wrap items-center gap-3 md:gap-4 text-sm text-text-secondary">
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        {author}
+      </span>
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M8 21v-4m8 4v-4m0-10h.01M12 11h.01M16 11h.01M12 15h.01M16 15h.01" />
+        </svg>
+        {formattedDate}
+      </span>
+      <span class="flex items-center gap-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        阅读 {estimatedReadingTime} 分钟
+      </span>
+    </div>
+    
+    <!-- 封面图片 -->
+    {cover && (
+      <img 
+        src={cover} 
+        alt={title}
+        class="w-full max-h-48 md:max-h-64 object-cover rounded-lg mt-4 md:mt-6"
+      />
+    )}
+    
+    <!-- 标签列表 -->
+    <div class="mt-3 md:mt-4">
+      <TagList tags={tags} />
+    </div>
+  </header>
+  
+  <!-- 文章主体 - 响应式双栏布局 -->
+  <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+    <!-- 内容区 -->
+    <article class="flex-1 min-w-0 order-2 lg:order-1">
+      <div class="prose prose-sm md:prose-base lg:prose-lg max-w-none dark:prose-invert
+        prose-headings:text-text-primary prose-headings:font-bold
+        prose-p:text-text-secondary prose-p:leading-relaxed
+        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+        prose-code:text-primary prose-code:bg-bg-tertiary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+        prose-pre:bg-bg-tertiary prose-pre:border prose-pre:border-border
+        prose-strong:text-text-primary prose-strong:font-semibold
+        prose-li:text-text-secondary prose-li:leading-relaxed
+        prose-img:rounded-lg prose-img:shadow-md">
+        <slot />
+      </div>
+    </article>
+    
+    <!-- 侧边栏 - 移动端显示在内容上方 -->
+    <aside class="lg:w-64 flex-shrink-0 order-1 lg:order-2">
+      <div class="lg:sticky lg:top-20 space-y-4 md:space-y-6 lg:space-y-8">
+        <!-- 目录 -->
+        {toc && headings.length > 0 && (
+          <TOC headings={headings} />
+        )}
+        
+        <!-- 标签 -->
+        <div class="bg-bg-tertiary rounded-lg p-3 md:p-4">
+          <h3 class="font-semibold text-text-primary mb-2 md:mb-3 flex items-center gap-2">
+            <span>🏷️</span> 标签
+          </h3>
+          <TagList tags={tags} compact />
+        </div>
+        
+        <!-- 分类信息 -->
+        {categoryInfo && (
+          <div class="bg-bg-tertiary rounded-lg p-3 md:p-4 hidden lg:block">
+            <h3 class="font-semibold text-text-primary mb-3 flex items-center gap-2">
+              <span>{categoryInfo.icon}</span> {categoryInfo.name}
+            </h3>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              {description.substring(0, 100)}...
+            </p>
+          </div>
+        )}
+      </div>
+    </aside>
+  </div>
+  
+  <!-- 文章导航 -->
+  {(nextPost || prevPost) && (
+    <PostNav next={nextPost} prev={prevPost} />
+  )}
+</BaseLayout>

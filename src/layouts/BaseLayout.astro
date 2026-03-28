@@ -1,0 +1,131 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  date?: Date;
+  modified?: Date;
+  author?: string;
+  category?: string;
+  tags?: string[];
+  keywords?: string[];
+}
+
+const {
+  title,
+  description = 'AI 时代的内容创作实验室 - 探索 AI 技能、洞察行业趋势、提升写作能力',
+  image = '/images/default-cover.png',
+  canonical = Astro.url.href,
+  date,
+  modified,
+  author = '杰哥 AI TEAM',
+  category,
+  tags = [],
+  keywords = [],
+} = Astro.props;
+
+const siteName = 'AI写作博客';
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- 基础元数据 -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content={date ? 'article' : 'website'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="zh_CN" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    
+    {date && (
+      <meta property="article:published_time" content={date.toISOString()} />
+    )}
+    {modified && (
+      <meta property="article:modified_time" content={modified.toISOString()} />
+    )}
+    {category && (
+      <meta property="article:section" content={category} />
+    )}
+    {tags.map(tag => (
+      <meta property="article:tag" content={tag} />
+    ))}
+    
+    <!-- Keywords -->
+    {keywords.length > 0 && (
+      <meta name="keywords" content={keywords.join(', ')} />
+    )}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title={siteName} href="/rss.xml" />
+    
+    <!-- Structured Data -->
+    {date && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": description,
+        "image": image,
+        "author": {
+          "@type": "Person",
+          "name": author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": siteName,
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://ai-writing.blog/logo.png"
+          }
+        },
+        "datePublished": date?.toISOString(),
+        "dateModified": modified?.toISOString() || date?.toISOString(),
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonical
+        },
+        "keywords": tags.join(', '),
+        "articleSection": category
+      })} />
+    )}
+  </head>
+  <body class="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+    <Header />
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

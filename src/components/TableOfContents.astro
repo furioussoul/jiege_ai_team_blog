@@ -1,0 +1,35 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+---
+
+<div class="rounded-lg bg-bg-secondary p-4 border border-border">
+  <h3 class="text-sm font-semibold text-text-primary mb-4 flex items-center gap-2">
+    <span>📋</span>
+    <span>目录</span>
+  </h3>
+  
+  <ul class="space-y-1">
+    {headings.map((heading) => (
+      <li
+        class={`text-sm ${
+          heading.depth === 2 
+            ? 'text-text-secondary' 
+            : heading.depth === 3 
+              ? 'text-text-muted pl-3' 
+              : 'text-text-muted pl-6'
+        }`}
+      >
+        <a
+          href={`#${heading.slug}`}
+          class="hover:text-primary transition-colors block py-1"
+        >
+          {heading.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { categories } from '../../utils/data/categories';
+
+// 生成静态路径
+export async function getStaticPaths() {
+  return categories.map((cat) => ({
+    params: { slug: cat.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const categoryInfo = categories.find(c => c.id === slug);
+
+// 获取该分类下的所有文章
+const allPosts = await getCollection('posts', ({ data }) => {
+  return data.draft !== true;
+});
+
+const categoryPosts = allPosts
+  .filter(post => post.data.category === slug)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout 
+  title={categoryInfo?.name || slug} 
+  description={categoryInfo ? `${categoryInfo.name} - ${categoryPosts.length} 篇文章` : `${slug} 分类文章`}
+>
+  <header class="py-12 text-center" style={`background: linear-gradient(to bottom, ${categoryInfo?.color || '#6366F1'}20, transparent)`}>
+    <span class="text-5xl mb-4 block">{categoryInfo?.icon}</span>
+    <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-2">
+      {categoryInfo?.name || slug}
+    </h1>
+    <p class="text-text-secondary max-w-2xl mx-auto">
+      {categoryInfo?.desc || ''}
+    </p>
+    <p class="mt-2 text-sm text-text-muted">
+      共 {categoryPosts.length} 篇文章
+    </p>
+  </header>
+  
+  {categoryPosts.length > 0 ? (
+    <section class="py-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {categoryPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            category={post.data.category}
+            tags={post.data.tags}
+            slug={post.id}
+            featured={post.data.featured}
+            image={post.data.cover}
+          />
+        ))}
+      </div>
+    </section>
+  ) : (
+    <div class="text-center py-16">
+      <p class="text-text-muted text-lg">该分类下暂无文章</p>
+      <a href="/" class="mt-4 inline-block text-primary hover:text-primary-light transition-colors">
+        返回首页
+      </a>
+    </div>
+  )}
+</BaseLayout>

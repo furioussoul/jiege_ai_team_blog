@@ -1,0 +1,191 @@
+---
+// Hero component - Dan Koe style: minimal, centered, large avatar background
+---
+
+<section class="hero-section">
+  <!-- Avatar Background - semi-transparent -->
+  <div class="avatar-bg">
+    <img src="/images/avatar.jpg" alt="" class="avatar-img" />
+  </div>
+  
+  <!-- Subtle gradient overlay -->
+  <div class="gradient-overlay"></div>
+  
+  <!-- Content - Centered -->
+  <div class="hero-content">
+    <!-- Main Title - Large, multi-line -->
+    <h1 class="hero-title">
+      <span class="title-line">探索 AI、写作</span>
+      <span class="title-line">与人类潜能</span>
+      <span class="title-line accent">的边界</span>
+    </h1>
+    
+    <!-- Subtitle -->
+    <p class="hero-subtitle">
+      记录学习、分享洞察、构建未来
+    </p>
+    
+    <!-- Minimal CTA -->
+    <div class="hero-cta">
+      <a href="/category/skills" class="cta-link">
+        开始探索
+        <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--color-bg-primary);
+  }
+  
+  /* Avatar Background */
+  .avatar-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  .avatar-img {
+    width: 60vh;
+    height: 60vh;
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: contain;
+    opacity: 0.12;
+    filter: blur(1px);
+    user-select: none;
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.02); }
+  }
+  
+  /* Gradient Overlay */
+  .gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      var(--color-bg-primary) 70%
+    );
+    z-index: 2;
+  }
+  
+  /* Content */
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+    animation: fadeUp 1s ease-out;
+  }
+  
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Title */
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .title-line {
+    display: block;
+  }
+  
+  .title-line.accent {
+    color: var(--color-primary);
+  }
+  
+  /* Subtitle */
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+    opacity: 0.9;
+  }
+  
+  /* CTA */
+  .hero-cta {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    padding: 0.75rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-link:hover {
+    color: var(--color-primary-light);
+    border-bottom-color: var(--color-primary);
+  }
+  
+  .arrow-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .cta-link:hover .arrow-icon {
+    transform: translateX(4px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .avatar-img {
+      width: 70vw;
+      height: 70vw;
+      opacity: 0.08;
+    }
+    
+    .hero-content {
+      padding: 1.5rem;
+    }
+    
+    .hero-title {
+      margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

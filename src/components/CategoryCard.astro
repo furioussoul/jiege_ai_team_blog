@@ -1,0 +1,50 @@
+---
+import { categories, type CategoryInfo } from '../utils/data/categories'
+
+interface Props {
+  category: CategoryInfo;
+  count: number;
+  index?: number;
+}
+
+const { category, count, index = 0 } = Astro.props;
+
+// Stagger delay based on index
+const staggerDelay = Math.min(index * 50, 300);
+
+// Generate hover styles dynamically
+const hoverBorderColor = `${category.color}40`;
+const hoverBoxShadow = `var(--shadow-md), 0 0 16px ${category.color}25`;
+---
+
+<a 
+  href={`/category/${category.id}`}
+  class="glass-card card-hover p-6 flex flex-col items-center justify-center text-center animate-slide-up group"
+  style={`background-color: ${category.color}10; animation-delay: ${staggerDelay}ms;`}
+  data-hover-border={hoverBorderColor}
+  data-hover-shadow={hoverBoxShadow}
+>
+  <span class="text-4xl mb-2 transition-transform duration-300 group-hover:scale-110 animate-float" style={`animation-delay: ${staggerDelay + 200}ms`}>{category.icon}</span>
+  <h3 class="font-semibold text-lg text-[var(--color-text-primary)] mb-1 transition-colors duration-200 group-hover:text-[var(--color-primary)]">
+    {category.name}
+  </h3>
+  <p class="text-sm text-[var(--color-text-muted)]">
+    {count} 篇文章
+  </p>
+</a>
+
+<script define:vars={{ hoverBorderColor, hoverBoxShadow }}>
+  // Apply hover styles via JavaScript since Astro scoped styles don't support dynamic values
+  document.querySelectorAll('.glass-card[data-hover-border]').forEach(el => {
+    const borderColor = el.getAttribute('data-hover-border');
+    const boxShadow = el.getAttribute('data-hover-shadow');
+    el.addEventListener('mouseenter', () => {
+      el.style.borderColor = borderColor;
+      el.style.boxShadow = boxShadow;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+    });
+  });
+</script>

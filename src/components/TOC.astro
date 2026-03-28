@@ -1,0 +1,138 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings?: Heading[];
+}
+
+const { headings = [] } = Astro.props;
+
+// 只显示 h2 和 h3
+const tocHeadings = headings.filter(h => h.depth >= 2 && h.depth <= 3);
+---
+
+{tocHeadings.length > 0 && (
+  <nav class="bg-bg-tertiary rounded-lg p-4 sticky top-4">
+    <h3 class="font-semibold text-text-primary mb-3 flex items-center gap-2">
+      <span>📋</span> 目录
+    </h3>
+    <ul class="space-y-1 text-sm" id="toc-list">
+      {tocHeadings.map((heading, idx) => (
+        <li data-heading-slug={heading.slug}>
+          <a
+            href={`#${heading.slug}`}
+            class={`toc-link block py-1.5 px-2 rounded transition-all duration-200 ${
+              heading.depth === 3 ? 'pl-6 text-xs' : 'pl-2'
+            }`}
+            data-index={idx}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+    
+    <!-- 进度指示器 -->
+    <div class="mt-4 pt-3 border-t border-border">
+      <div class="flex items-center justify-between text-xs text-text-muted mb-1">
+        <span>阅读进度</span>
+        <span id="toc-progress">0%</span>
+      </div>
+      <div class="w-full h-1.5 bg-bg-secondary rounded-full overflow-hidden">
+        <div id="toc-progress-bar" class="h-full bg-primary rounded-full transition-all duration-300" style="width: 0%"></div>
+      </div>
+    </div>
+  </nav>
+)}
+
+<script>
+  // TOC 滚动高亮功能
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const tocList = document.getElementById('toc-list');
+  const progressBar = document.getElementById('toc-progress-bar');
+  const progressText = document.getElementById('toc-progress');
+  
+  // 获取所有标题元素
+  const headingSlugs = Array.from(document.querySelectorAll('[data-heading-slug]'))
+    .map(li => li.dataset.headingSlug);
+  
+  const headingElements = headingSlugs.map(slug => document.getElementById(slug));
+  
+  // 活动状态样式
+  const activeClass = 'text-primary bg-primary-subtle font-medium';
+  const inactiveClass = 'text-text-secondary hover:text-primary hover:bg-bg-hover';
+  
+  // 更新高亮状态
+  function updateActiveHeading() {
+    const scrollPos = window.scrollY + 100; // 偏移量
+    
+    let activeIndex = 0;
+    for (let i = headingElements.length - 1; i >= 0; i--) {
+      const heading = headingElements[i];
+      if (heading && heading.offsetTop <= scrollPos) {
+        activeIndex = i;
+        break;
+      }
+    }
+    
+    // 更新链接样式
+    tocLinks.forEach((link, idx) => {
+      if (idx === activeIndex) {
+        link.classList.remove(...inactiveClass.split(' ').filter(c => c));
+        link.classList.add(...activeClass.split(' ').filter(c => c));
+      } else {
+        link.classList.remove(...activeClass.split(' ').filter(c => c));
+        link.classList.add(...inactiveClass.split(' ').filter(c => c));
+      }
+    });
+    
+    // 更新阅读进度
+    const articleContent = document.querySelector('article') || document.querySelector('.prose');
+    if (articleContent && progressBar && progressText) {
+      const articleTop = articleContent.offsetTop;
+      const articleHeight = articleContent.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const scrolled = Math.max(0, scrollPos - articleTop);
+      const progress = Math.min(100, Math.round((scrolled / (articleHeight - windowHeight + 200)) * 100));
+      
+      progressBar.style.width = `${progress}%`;
+      progressText.textContent = `${progress}%`;
+    }
+  }
+  
+  // 监听滚动
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateActiveHeading();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // 初始化
+  updateActiveHeading();
+  
+  // 点击平滑滚动
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const slug = link.closest('[data-heading-slug]')?.dataset.headingSlug;
+      const target = document.getElementById(slug || '');
+      if (target) {
+        const offset = 80;
+        const targetPosition = target.offsetTop - offset;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>

@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { categories } from '../utils/data/categories'
+---
+
+<BaseLayout title="关于" description="AI写作博客介绍">
+  <div class="max-w-3xl mx-auto">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-[var(--color-text-primary)] mb-4">关于本博客</h1>
+    </header>
+    
+    <article class="prose prose-lg max-w-none dark:prose-invert">
+      <h2>🌟 AI 时代的内容创作实验室</h2>
+      
+      <p>
+        这是一个专注于 AI 技能、技术洞察、写作方法的个人博客。
+        我们相信 AI 正在重塑内容创作的方式，而掌握正确的 AI 工具和方法，
+        能够让每个人成为更高效的创作者。
+      </p>
+      
+      <h2>📚 内容分类</h2>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 not-prose">
+        {categories.map(cat => (
+          <div 
+            class="p-4 rounded-lg"
+            style={`background-color: ${cat.color}15`}
+          >
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-2xl">{cat.icon}</span>
+              <span class="font-semibold">{cat.name}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <h2>✍️ 作者介绍</h2>
+      
+      <p>
+        本博客由杰哥 AI TEAM创建和维护。我是一名热爱技术的内容创作者，
+        在 AI 编程、视频生成、自动化工具等领域有丰富的实践经验。
+      </p>
+      
+      <p>
+        我相信<strong>"许愿不是解决方案"</strong>——真正有效的 AI 工具使用，
+        需要的是工程化的思维、系统化的流程、以及对工具能力的深刻理解。
+      </p>
+      
+      <h2>🛠️ 技术栈</h2>
+      
+      <ul>
+        <li><strong>框架</strong>: Astro 5.x - 静态优先，零 JS 默认</li>
+        <li><strong>样式</strong>: Tailwind CSS - 现代、高效</li>
+        <li><strong>内容</strong>: MDX - Markdown + React 组件</li>
+        <li><strong>代码高亮</strong>: Shiki - VS Code 同款引擎</li>
+        <li><strong>部署</strong>: Vercel - 全球 CDN</li>
+      </ul>
+      
+      <h2>📬 联系方式</h2>
+      
+      <p>
+        如果您有任何问题或建议，欢迎通过以下方式联系：
+      </p>
+      
+      <ul>
+        <li><a href="https://github.com/furioussoul/jiege_ai_team_blog" target="_blank" rel="noopener">GitHub: 项目仓库</a></li>
+        <li><a href="https://x.com/snzhngji869582?s=21" target="_blank" rel="noopener">Twitter/X: 关注更新</a></li>
+        <li><a href="https://space.bilibili.com/270076899" target="_blank" rel="noopener">B站: 视频内容</a></li>
+      </ul>
+      
+      <hr />
+      
+      <p class="text-sm text-[var(--color-text-muted)]">
+        最后更新: 2026年3月
+      </p>
+    </article>
+  </div>
+</BaseLayout>

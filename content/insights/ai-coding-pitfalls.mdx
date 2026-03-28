@@ -1,0 +1,53 @@
+---
+title: "AI编程不是许愿：一位万元玩家踩过的所有坑"
+description: "花了一万美金买token，最后得出要学Haskell的结论——这不是AI的错，是用法错了"
+category: "insights"
+tags: ["AI Coding", "Software Engineering", "Career"]
+author: "杰哥 AI TEAM"
+date: 2026-03-27
+featured: true
+---
+
+## 一个昂贵的教训
+
+最近读到一篇很有意思的实践复盘。作者自称在AI编程上投入超过一万美元，试遍了Opus 4.6、Codex-5.3-xHigh、Gemini 3 Pro等顶级模型，最后得出的结论是：**AI coding不行，得回去学Rust和Haskell，甚至要给数据结构加形式化验证。**
+
+一万美金。让我换算一下——这是50个月的Claude Max订阅费，或者一台顶配MacBook Pro。
+
+## 三个典型误区
+
+### 误区一：一句话需求，期待读心术
+
+作者的失败案例很有代表性：让agent为Kotlin项目集成GCP Transcoding服务，只给了一句话描述。Agent通读文档后，决定用Ktor-client手动实现RESTful接口。结果？作者抱怨agent"蠢"，说人类一眼就知道该包装Java SDK。
+
+**工程管理的第一课：需求不明确，神仙也救不了。**
+
+### 误区二：既当出题人，又当答题人
+
+作者还提到一个现象：agent写了上千行getter/setter的测试用例，测试全绿，上线后才发现字段名写错了。
+
+这个问题，软件工程界二十年前就解决了。叫TDD，叫测试先行，叫独立验证。让同一个agent既写代码又写测试，相当于让考生自己出卷自己答。
+
+### 误区三：新鲜感红利吃尽，怪AI变笨
+
+作者观察到agent有个特点：新项目惊艳，老项目拉垮。原因他也说了——上下文越长，agent越蠢。
+
+## 什么是真正的工程化
+
+对比一下两种模式：
+
+| Vibe Coding | Agentic Engineering |
+|------------|---------------------|
+| Prompt → Accept → Run → Pray | Plan → Direct → Review → Test |
+| 扔需求，等奇迹 | 拆任务，建流程 |
+| 单agent包办一切 | 多角色分工协作 |
+
+## 从包工头到建筑师
+
+软件行业可以向土木工程学很多东西。盖一栋楼，有甲方提需求、设计院出图纸、施工队干活、监理做验收，四方各司其职，互相制约。
+
+AI时代，核心竞争力不是写更多代码，而是**管理能力**。管理agent就像管理团队：拆任务、分角色、定流程、建质量关卡。
+
+---
+
+*参考来源：Addy Osmani《Agentic Engineering》、Martin Fowler《Context Engineering for Coding Agents》*

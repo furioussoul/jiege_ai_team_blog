@@ -1,0 +1,23 @@
+---
+interface Props {
+  tags: string[];
+  compact?: boolean;
+}
+
+const { tags, compact = false } = Astro.props;
+---
+
+{tags.length > 0 && (
+  <div class={`flex flex-wrap gap-2 ${compact ? 'text-xs' : 'text-sm'}`}>
+    {tags.map((tag) => (
+      <a
+        href={`/tag/${tag}`}
+        class={`inline-flex items-center px-2 py-1 rounded-full bg-bg-tertiary text-text-muted hover:text-primary hover:bg-primary/10 transition-colors ${
+          compact ? 'text-xs' : 'text-sm'
+        }`}
+      >
+        #{tag}
+      </a>
+    ))}
+  </div>
+)}

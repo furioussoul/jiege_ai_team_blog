@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+// 生成静态路径
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const tags = new Set<string>();
+  
+  posts.forEach(post => {
+    post.data.tags.forEach(tag => tags.add(tag));
+  });
+  
+  return Array.from(tags).map((tag) => ({
+    params: { slug: tag },
+  }));
+}
+
+const { slug } = Astro.params;
+
+// 获取包含该标签的所有文章
+const allPosts = await getCollection('posts');
+const tagPosts = allPosts
+  .filter(post => post.data.tags.includes(slug) && !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout 
+  title={`#${slug}`} 
+  description={`标签 ${slug} 下的 ${tagPosts.length} 篇文章`}
+>
+  <header class="mb-12">
+    <div class="flex items-center gap-4 mb-4">
+      <div class="p-4 bg-primary/10 rounded-2xl">
+        <span class="text-3xl">#</span>
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-text-primary">
+          {slug}
+        </h1>
+        <p class="text-text-secondary mt-1">
+          {tagPosts.length} 篇文章
+        </p>
+      </div>
+    </div>
+  </header>
+  
+  {tagPosts.length > 0 ? (
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {tagPosts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          category={post.data.category}
+          tags={post.data.tags}
+          slug={post.id.replace(/\.(md|mdx)$/, '')}
+          featured={post.data.featured}
+          image={post.data.cover}
+          readingTime="5 分钟"
+        />
+      ))}
+    </div>
+  ) : (
+    <div class="text-center py-16">
+      <p class="text-text-muted text-lg">该标签下暂无文章</p>
+      <a href="/" class="mt-4 inline-block text-primary hover:text-primary-light transition-colors">
+        返回首页
+      </a>
+    </div>
+  )}
+</BaseLayout>

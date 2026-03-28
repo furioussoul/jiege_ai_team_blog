@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+// 生成静态路径
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => {
+    return data.draft !== true;
+  });
+  
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+// 获取所有文章用于上下篇导航
+const allPosts = await getCollection('posts', ({ data }) => {
+  return data.draft !== true;
+});
+
+const publishedPosts = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const currentIndex = publishedPosts.findIndex(p => p.id === post.id);
+const prevPost = currentIndex > 0 ? publishedPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < publishedPosts.length - 1 ? publishedPosts[currentIndex + 1] : null;
+---
+
+<PostLayout
+  title={post.data.title}
+  description={post.data.description}
+  date={post.data.date}
+  modified={post.data.modified}
+  author={post.data.author}
+  category={post.data.category}
+  tags={post.data.tags}
+  cover={post.data.cover}
+  toc={post.data.toc}
+  keywords={post.data.keywords}
+  readingTime={5}
+  prevPost={prevPost ? { slug: prevPost.id, title: prevPost.data.title } : undefined}
+  nextPost={nextPost ? { slug: nextPost.id, title: nextPost.data.title } : undefined}
+  headings={headings}
+>
+  <Content />
+</PostLayout>

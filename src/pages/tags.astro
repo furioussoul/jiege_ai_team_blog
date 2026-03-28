@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// 获取所有文章
+const allPosts = await getCollection('posts', ({ data }) => {
+  return data.draft !== true;
+});
+
+// 收集所有标签及其文章数量
+const tagCounts: Record<string, number> = {};
+for (const post of allPosts) {
+  for (const tag of post.data.tags) {
+    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+  }
+}
+
+// 按文章数量排序
+const sortedTags = Object.entries(tagCounts)
+  .sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="标签列表" description="所有文章标签">
+  <div class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-text-primary mb-2 flex items-center gap-2">
+        <span>🏷️</span> 标签列表
+      </h1>
+      <p class="text-text-secondary">
+        共 {sortedTags.length} 个标签
+      </p>
+    </header>
+    
+    <!-- 标签列表 -->
+    <div class="flex flex-wrap gap-3">
+      {sortedTags.map(([tag, count]) => {
+        return (
+          <a 
+            href={`/tag/${tag}`}
+            class="group inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-tertiary hover:bg-primary/10 transition-colors"
+          >
+            <span class="text-text-primary group-hover:text-primary">
+              #{tag}
+            </span>
+            <span class="text-xs text-text-muted px-2 py-0.5 rounded-full bg-bg-secondary">
+              {count}
+            </span>
+          </a>
+        );
+      })}
+    </div>
+    
+    {sortedTags.length === 0 && (
+      <div class="text-center py-12 bg-bg-tertiary rounded-lg">
+        <p class="text-text-muted">暂无标签</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

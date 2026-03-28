@@ -1,0 +1,9 @@
+{
+  "name": "AI 写作博客",
+  "short_name": "AI写作",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#6366F1",
+  "description": "AI 时代的内容创作实验室"
+}
