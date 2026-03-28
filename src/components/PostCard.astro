@@ -8,12 +8,12 @@ interface Props {
   category: string;
   tags: string[];
   slug: string;
-  cover?: string;
+  image?: string;
   featured?: boolean;
   index?: number;
 }
 
-const { title, description, date, category, tags, slug, cover, featured, index = 0 } = Astro.props;
+const { title, description, date, category, tags, slug, image, featured, index = 0 } = Astro.props;
 
 const categoryInfo = categories.find(c => c.id === category);
 const formattedDate = date ? date.toLocaleDateString('zh-CN', {
@@ -38,9 +38,9 @@ const staggerDelay = Math.min(index * 50, 400);
   <!-- 封面图片 -->
   <a href={postUrl} class="block">
     <div class="aspect-video bg-[var(--color-bg-tertiary)] overflow-hidden relative">
-      {cover ? (
+      {image ? (
         <img 
-          src={cover} 
+          src={image} 
           alt={title}
           class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-95"
           loading="lazy"
