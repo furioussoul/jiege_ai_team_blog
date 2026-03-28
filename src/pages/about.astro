@@ -9,7 +9,14 @@ import { categories } from '../utils/data/categories'
       <h1 class="text-3xl font-bold text-[var(--color-text-primary)] mb-4">关于本博客</h1>
     </header>
     
-    <article class="prose prose-lg max-w-none dark:prose-invert">
+    <article class="prose prose-lg max-w-none
+  prose-headings:text-[var(--color-text-primary)]
+  prose-p:text-[var(--color-text-secondary)]
+  prose-a:text-[var(--color-primary)]
+  prose-strong:text-[var(--color-text-primary)]
+  prose-li:text-[var(--color-text-secondary)]
+  prose-hr:border-[var(--color-border)]
+">
       <h2>🌟 AI 时代的内容创作实验室</h2>
       
       <p>
@@ -70,7 +77,7 @@ import { categories } from '../utils/data/categories'
       
       <hr />
       
-      <p class="text-sm text-[var(--color-text-muted)]">
+      <p class="text-sm text-[var(--color-text-secondary)]">
         最后更新: 2026年3月
       </p>
     </article>
