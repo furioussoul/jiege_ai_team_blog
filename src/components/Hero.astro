@@ -3,14 +3,6 @@
 ---
 
 <section class="hero-section">
-  <!-- Avatar Background - semi-transparent -->
-  <div class="avatar-bg">
-    <img src="/images/avarta.jpg" alt="" class="avatar-img" />
-  </div>
-  
-  <!-- Subtle gradient overlay -->
-  <div class="gradient-overlay"></div>
-  
   <!-- Content - Centered -->
   <div class="hero-content">
     <!-- Main Title - Large, multi-line -->
@@ -46,46 +38,6 @@
     justify-content: center;
     overflow: hidden;
     background: var(--color-bg-primary);
-  }
-  
-  /* Avatar Background */
-  .avatar-bg {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-  }
-  
-  .avatar-img {
-    width: 60vh;
-    height: 60vh;
-    max-width: 500px;
-    max-height: 500px;
-    object-fit: contain;
-    opacity: 0.6;
-    /* 黑色图片处理：反转颜色 + 提亮 + 发光效果 */
-    filter: blur(1px) brightness(4) invert(1) drop-shadow(0 0 30px rgba(255,92,92,0.3));
-    user-select: none;
-    animation: float 8s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-10px) scale(1.02); }
-  }
-  
-  /* Gradient Overlay */
-  .gradient-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse at center,
-      transparent 0%,
-      var(--color-bg-primary) 70%
-    );
-    z-index: 2;
   }
   
   /* Content */
@@ -171,13 +123,6 @@
   
   /* Responsive */
   @media (max-width: 768px) {
-    .avatar-img {
-      width: 70vw;
-      height: 70vw;
-      opacity: 0.5;
-      filter: blur(1px) brightness(4) invert(1) drop-shadow(0 0 20px rgba(255,92,92,0.2));
-    }
-    
     .hero-content {
       padding: 1.5rem;
     }

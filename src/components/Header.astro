@@ -1,6 +1,4 @@
 ---
-import ThemeToggle from './ThemeToggle.tsx';
-
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
@@ -41,7 +39,7 @@ const navLinks = [
       
       <!-- Right side: Search & Theme -->
       <div class="flex items-center gap-4">
-        <!-- Search Button -->
+        <!-- Search Link -->
         <a
           href="/search"
           class="flex items-center gap-2 px-3 py-2 rounded-lg glass-border btn-click text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] animate-fade-in"
@@ -52,9 +50,6 @@ const navLinks = [
           </svg>
           <span class="hidden sm:inline text-sm">搜索</span>
         </a>
-        
-        <!-- Theme Toggle -->
-        <ThemeToggle client:load />
         
         <!-- Mobile Menu Button -->
         <button

@@ -6,9 +6,15 @@
    OpenClaw + Team-LandingPage Design System
    =========================================== */
 
-/* 强制深色主题 - 解决文字不可见问题 */
+/* 强制深色主题 - 无light模式切换 */
 html {
   color-scheme: dark;
+}
+
+/* 强制设置 data-theme 为 dark */
+html[data-theme],
+html {
+  data-theme: dark;
 }
 
 body {
@@ -16,8 +22,9 @@ body {
   color: var(--color-text-primary);
 }
 
-/* 深色主题 - 默认 */
+/* 深色主题 - 唯一主题 */
 :root {
+  data-theme: dark;
   /* Primary - Punchy signature red (OpenClaw style) */
   --color-primary: #ff5c5c;
   --color-primary-light: #ff7070;
@@ -83,43 +90,6 @@ body {
   --duration-slow: 350ms;
   
   color-scheme: dark;
-}
-
-/* 浅色主题 */
-:root[data-theme="light"] {
-  --color-primary: #dc2626;
-  --color-primary-light: #ef4444;
-  --color-primary-dark: #b91c1c;
-  --color-primary-subtle: rgba(220, 38, 38, 0.12);
-  --color-primary-glow: rgba(220, 38, 38, 0.15);
-  
-  --color-bg-primary: #fafafa;
-  --color-bg-secondary: #ffffff;
-  --color-bg-tertiary: #f4f4f5;
-  --color-bg-hover: #e4e4e7;
-  
-  --color-text-primary: #18181b;
-  --color-text-secondary: #52525b;
-  --color-text-muted: #71717a;
-  
-  --color-border: #e4e4e7;
-  --color-border-light: #f4f4f5;
-  --color-border-strong: #d4d4d8;
-  
-  /* Glass Effect - Light theme */
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  
-  /* Light shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(0, 0, 0, 0.03);
-  
-  --card-highlight: rgba(0, 0, 0, 0.03);
-  
-  color-scheme: light;
 }
 
 /* 基础样式 */
