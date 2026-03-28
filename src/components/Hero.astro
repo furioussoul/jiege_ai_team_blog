@@ -64,8 +64,9 @@
     max-width: 500px;
     max-height: 500px;
     object-fit: contain;
-    opacity: 0.35;
-    filter: blur(1px) brightness(2.5) invert(0.8);
+    opacity: 0.6;
+    /* 黑色图片处理：反转颜色 + 提亮 + 发光效果 */
+    filter: blur(1px) brightness(4) invert(1) drop-shadow(0 0 30px rgba(255,92,92,0.3));
     user-select: none;
     animation: float 8s ease-in-out infinite;
   }
@@ -173,7 +174,8 @@
     .avatar-img {
       width: 70vw;
       height: 70vw;
-      opacity: 0.08;
+      opacity: 0.5;
+      filter: blur(1px) brightness(4) invert(1) drop-shadow(0 0 20px rgba(255,92,92,0.2));
     }
     
     .hero-content {
