@@ -3,6 +3,7 @@ title: "抖音AI热点监控系统"
 description: "自动爬取抖音热搜，筛选与 AI 相关的内容，整理成报告发送给用户。"
 category: "skills"
 tags: ["AI", "热点监控", "抖音", "自动化", "爬虫"]
+image: "/images/covers/douyin-hot-monitor.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

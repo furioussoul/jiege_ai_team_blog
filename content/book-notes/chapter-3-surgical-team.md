@@ -3,6 +3,7 @@ title: "《人月神话》第3章研读报告：外科手术队伍"
 description: "Mills的外科手术团队模式深度解读。AI时代团队组织的新思考：AI应该是\"超级副手\"而非\"主刀医生\"。"
 category: "book-notes"
 tags: ["人月神话", "Brooks", "外科手术团队", "团队管理", "AI"]
+image: "/images/covers/chapter-3-surgical-team.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

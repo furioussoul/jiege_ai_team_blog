@@ -3,6 +3,7 @@ title: "软件工程没有银弹，但AI给了我们最好的\"弹药\""
 description: "Brooks的预言依然有效，AI不是银弹，但它给了我们一把前所未有的利剑。未来的竞争优势不在于谁用AI写得更快，而在于谁能用AI产出更高质量的架构设计。"
 category: "insights"
 tags: ["AI", "软件工程", "银弹", "架构", "Brooks"]
+image: "/images/covers/no-silver-bullet-but-ai-ammo.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

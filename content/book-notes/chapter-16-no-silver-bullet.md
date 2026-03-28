@@ -3,6 +3,7 @@ title: "《人月神话》第16章「没有银弹」深度分析报告"
 description: "Brooks最核心的章节，探讨本质困难与次要困难的划分，以及AI Coding工具是否是Brooks预言的\"银弹\"。"
 category: "book-notes"
 tags: ["人月神话", "Brooks", "银弹", "本质困难", "软件工程"]
+image: "/images/covers/chapter-16-no-silver-bullet.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

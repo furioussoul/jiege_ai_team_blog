@@ -3,6 +3,7 @@ title: "思维差异：传统程序员 vs AI时代管理者"
 description: "最可怕的不是AI抢你饭碗，是你还在用旧的技能树打新的副本。两种思维，两种命运。"
 category: "insights"
 tags: ["AI", "思维模式", "职业发展", "管理"]
+image: "/images/covers/mindset-difference.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

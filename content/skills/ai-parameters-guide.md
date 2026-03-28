@@ -3,6 +3,7 @@ title: "AI 参数量科普 - 关键帧输出"
 description: "关于 AI 参数量的科普内容，包含 6 张关键帧图片和图文发布素材。"
 category: "skills"
 tags: ["AI", "参数量", "科普", "大模型", "GPT5"]
+image: "/images/covers/ai-parameters-guide.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

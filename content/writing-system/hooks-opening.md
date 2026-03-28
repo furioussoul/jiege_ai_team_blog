@@ -3,6 +3,7 @@ title: "开头模式（Hooks）"
 description: "开头的作用：让读者想继续看下去。原则：3秒内抓住注意力。"
 category: "writing-system"
 tags: ["写作", "开头", "技巧", "模板"]
+image: "/images/covers/hooks-opening.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

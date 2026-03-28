@@ -3,6 +3,7 @@ title: "Reddit撕起来了：Vibe coding是革命还是骗局？"
 description: "3天前Reddit炸锅：一篇帖子引发程序员身份认同战争。同一个45年老兵，被两派同时引用——他说\"AI帮我写全部代码\"，下一句是\"AI代码一文不值\"。"
 category: "insights"
 tags: ["AI", "编程", "VibeCoding", "Reddit", "程序员"]
+image: "/images/covers/vibe-coding-revolution-or-scam.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

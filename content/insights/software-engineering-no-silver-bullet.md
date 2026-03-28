@@ -3,6 +3,7 @@ title: "软件工程没有银弹，但AI给了我们最好的\"弹药\""
 description: "AI时代软件工程的思考与启示。AI不是银弹，但是一把锋利的\"屠龙刀\"——未来的竞争优势不在于\"谁用AI写得更快\"，而在于\"谁能用AI产出更高质量的架构设计\"。"
 category: "insights"
 tags: ["软件工程", "AI", "人月神话", "银弹", "Brooks"]
+image: "/images/covers/software-engineering-no-silver-bullet.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

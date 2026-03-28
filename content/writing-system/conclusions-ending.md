@@ -3,6 +3,7 @@ title: "收尾模式（Conclusions）"
 description: "收尾的作用：让读者记住你说的，激发行动。原则：最后一句话最重要。"
 category: "writing-system"
 tags: ["写作", "收尾", "技巧", "模板"]
+image: "/images/covers/conclusions-ending.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

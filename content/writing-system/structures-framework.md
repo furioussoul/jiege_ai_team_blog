@@ -3,6 +3,7 @@ title: "展开结构（Structures）"
 description: "展开的作用：把观点说清楚，让读者跟着你的思路走。原则：一个结构搞定一个主题。"
 category: "writing-system"
 tags: ["写作", "结构", "技巧", "模板"]
+image: "/images/covers/structures-framework.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

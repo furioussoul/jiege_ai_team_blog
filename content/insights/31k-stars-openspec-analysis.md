@@ -3,6 +3,7 @@ title: "31K Stars的OpenSpec，我为什么不看好它"
 description: "深度分析OpenSpec项目，探讨Spec-driven development在AI编程时代的实际价值与局限性。思想被铭记，工具被遗忘——这不是悲剧，是成功产品的宿命。"
 category: "insights"
 tags: ["AI", "编程", "OpenSpec", "Cursor", "SDD", "工程化"]
+image: "/images/covers/31k-stars-openspec-analysis.png"
 date: 2026-03-27
 author: "杰哥 AI TEAM"
 ---

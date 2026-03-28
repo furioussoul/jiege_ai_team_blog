@@ -3,6 +3,7 @@ title: "Google Veo 视频 CLI 工具"
 description: "基于 Google Veo API 的视频生成命令行工具，支持文生视频和图生视频两种模式。"
 category: "skills"
 tags: ["AI", "视频生成", "Veo", "CLI", "Google"]
+image: "/images/covers/veo-video-generation-cli.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

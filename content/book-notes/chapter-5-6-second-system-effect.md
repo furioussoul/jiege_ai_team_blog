@@ -3,6 +3,7 @@ title: "《人月神话》第5-6章研读报告"
 description: "画蛇添足与贯彻执行——AI Coding工具视角的分析。探讨第二个系统效应以及如何确保设计意图被准确执行。"
 category: "book-notes"
 tags: ["人月神话", "Brooks", "软件工程", "第二个系统效应", "贯彻执行"]
+image: "/images/covers/chapter-5-6-second-system-effect.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

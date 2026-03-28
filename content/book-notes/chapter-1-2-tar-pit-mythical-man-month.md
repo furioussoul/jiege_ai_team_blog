@@ -3,6 +3,7 @@ title: "《人月神话》第1-2章研读报告：焦油坑与人月神话"
 description: "向Brooks汇报：结合AI Coding工具的现状分析。核心观点包括编程的乐趣与苦恼、人月不可互换的原理、以及编码只占1/6项目时间的关键洞察。"
 category: "book-notes"
 tags: ["人月神话", "Brooks", "软件工程", "AI", "项目管理"]
+image: "/images/covers/chapter-1-2-tar-pit-mythical-man-month.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 book: "人月神话"

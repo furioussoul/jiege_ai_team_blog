@@ -3,6 +3,7 @@ title: "《人月神话》第11-12章研读报告"
 description: "未雨绸缪与干将莫邪——AI Coding时代再读。探讨计划抛弃原型和工具投资策略在AI时代的重新解读。"
 category: "book-notes"
 tags: ["人月神话", "Brooks", "软件工程", "原型", "工具"]
+image: "/images/covers/chapter-11-12-plan-to-throw-one.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

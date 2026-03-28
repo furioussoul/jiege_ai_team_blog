@@ -3,6 +3,7 @@ title: "优秀案例分析（Examples）"
 description: "这里存放你拆解过的优秀文章。方法：读 → 拆 → 学 → 用"
 category: "writing-system"
 tags: ["写作", "案例", "拆解", "学习"]
+image: "/images/covers/examples-analysis.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

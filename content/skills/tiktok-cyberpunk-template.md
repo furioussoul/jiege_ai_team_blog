@@ -3,6 +3,7 @@ title: "抖音 AI 科普视频模板 - 赛博朋克风格"
 description: "冷色系赛博风（Cyber-Tech）视频模板，融合《边缘行者》高对比度赛博朋克质感"
 category: "skills"
 tags: ["AI", "视频模板", "Remotion", "赛博朋克", "抖音"]
+image: "/images/covers/tiktok-cyberpunk-template.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

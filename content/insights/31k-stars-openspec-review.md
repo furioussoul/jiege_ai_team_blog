@@ -3,6 +3,7 @@ title: "31K Stars的OpenSpec，我为什么不看好它"
 description: "思想被铭记，工具被遗忘——这不是悲剧，是成功产品的宿命。深入分析OpenSpec的六个硬伤，以及为什么它像DDD一样会走向思想被铭记、工具被遗忘的命运。"
 category: "insights"
 tags: ["AI", "编程", "OpenSpec", "SDD", "工程化"]
+image: "/images/covers/31k-stars-openspec-review.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

@@ -3,6 +3,7 @@ title: "AI编程不是许愿：一位\"万元玩家\"踩过的所有坑"
 description: "花了一万美金买token，最后得出\"要学Haskell\"的结论——这不是AI的错，是用法错了。深入分析AI编程的三个典型误区。"
 category: "insights"
 tags: ["AI", "编程", "工程化", "Claude", "Cursor"]
+image: "/images/covers/ai-coding-not-wishing.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

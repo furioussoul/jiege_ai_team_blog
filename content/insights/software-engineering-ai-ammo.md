@@ -3,6 +3,7 @@ title: "软件工程没有银弹，但AI给了我们最好的弹药"
 description: "从Brooks人月神话视角分析AI工具对软件工程的影响。AI不是银弹，但它给了我们一把前所未有的利剑。"
 category: "insights"
 tags: ["AI", "软件工程", "人月神话", "银弹", "Brooks"]
+image: "/images/covers/software-engineering-ai-ammo.png"
 date: 2026-03-27
 author: "杰哥 AI TEAM"
 ---

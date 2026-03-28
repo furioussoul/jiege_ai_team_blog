@@ -3,6 +3,7 @@ title: "写作模板（Templates）"
 description: "模板的作用：写的时候不用从零开始。原则：模板是脚手架，不是牢笼。"
 category: "writing-system"
 tags: ["写作", "模板", "技巧", "周报"]
+image: "/images/covers/templates-guide.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

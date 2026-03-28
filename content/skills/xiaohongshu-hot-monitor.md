@@ -3,6 +3,7 @@ title: "小红书AI热点监控"
 description: "自动爬取小红书热榜，筛选与 AI 相关的内容，生成详细报告。"
 category: "skills"
 tags: ["AI", "热点监控", "小红书", "自动化", "定时任务"]
+image: "/images/covers/xiaohongshu-hot-monitor.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

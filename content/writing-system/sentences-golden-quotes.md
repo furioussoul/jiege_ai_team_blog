@@ -3,6 +3,7 @@ title: "金句库（Sentences）"
 description: "金句的作用：让人想转发、想收藏、想引用。原则：短、有观点、有画面感。"
 category: "writing-system"
 tags: ["写作", "金句", "技巧", "模板"]
+image: "/images/covers/sentences-golden-quotes.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

@@ -3,6 +3,7 @@ title: "AI Knowledge - AI 基础科普视频"
 description: "AI 基础科普视频项目，使用 Remotion 制作，UI 复刻 GitHub Markdown 界面。"
 category: "skills"
 tags: ["AI", "科普视频", "Remotion", "GitHub风格", "参数量"]
+image: "/images/covers/ai-knowledge-video.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

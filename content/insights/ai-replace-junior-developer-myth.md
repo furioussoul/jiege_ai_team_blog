@@ -3,6 +3,7 @@ title: "AI替代初级开发者是个伪命题"
 description: "初级开发者的价值，从来不是\"写代码\"，而是\"学会写代码的过程\"。AI不会替代初级开发者，但会重新定义\"初级开发者\"。"
 category: "insights"
 tags: ["AI", "职业发展", "团队管理", "初级开发者"]
+image: "/images/covers/ai-replace-junior-developer-myth.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

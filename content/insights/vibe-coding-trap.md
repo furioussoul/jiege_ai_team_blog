@@ -3,6 +3,7 @@ title: "Reddit炸锅：Vibe coding是给蠢人的陷阱？"
 description: "45年经验老兵说\"AI帮我写全部代码\"，下一句是\"AI代码一文不值\"。vibe coding降低了门槛，也抬高了天花板。"
 category: "insights"
 tags: ["AI", "编程", "VibeCoding", "Reddit"]
+image: "/images/covers/vibe-coding-trap.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---

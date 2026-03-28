@@ -3,6 +3,7 @@ title: "《人月神话》第8-10章研读报告"
 description: "软件项目估算的困难和方法、规模控制策略、文档的重要性。AI Coding时代Brooks观点的再验证与适配分析。"
 category: "book-notes"
 tags: ["人月神话", "Brooks", "软件工程", "估算", "文档"]
+image: "/images/covers/chapter-8-10-estimating-documentation.png"
 date: 2026-03-28
 author: "杰哥 AI TEAM"
 ---
