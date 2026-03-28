@@ -1,6 +1,16 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
+// 提取章节号用于语义排序
+function extractChapterNumber(title: string): number | null {
+  // 匹配 "第1章"、"第1-2章"、"chapter-1"、"chapter-1-2"
+  const match = title.match(/第(\d+)|chapter-(\d+)/i);
+  if (match) {
+    return parseInt(match[1] || match[2]);
+  }
+  return null;
+}
+
 // Category metadata
 export const categories = {
   skills: { name: 'AI 技能', icon: '🛠️', color: '#6366F1', desc: '视频生成、图片生成、热点监控等工具文档' },
@@ -16,7 +26,23 @@ export async function getAllPosts(): Promise<CollectionEntry<'posts'>[]> {
   const posts = await getCollection('posts');
   return posts
     .filter((post) => !post.data.draft)
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    .sort((a, b) => {
+      const chapterA = extractChapterNumber(a.data.title);
+      const chapterB = extractChapterNumber(b.data.title);
+      
+      // 都有章节号，按章节排序
+      if (chapterA !== null && chapterB !== null) {
+        return chapterA - chapterB;
+      }
+      
+      // 都无章节号，按日期排序（最新在前）
+      if (chapterA === null && chapterB === null) {
+        return b.data.date.valueOf() - a.data.date.valueOf();
+      }
+      
+      // 有章节号的排前面
+      return chapterA !== null ? -1 : 1;
+    });
 }
 
 // Get posts by category
