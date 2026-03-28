@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import PostCard from '../components/PostCard.astro';
 import { getLatestPosts } from '../utils/content';
 
 const latestPosts = await getLatestPosts(10);
@@ -10,205 +11,34 @@ const latestPosts = await getLatestPosts(10);
   <!-- Hero Section - Dan Koe Style -->
   <Hero />
   
-  <!-- Latest Posts - Minimal List Style -->
+  <!-- Latest Posts with Cover Images -->
   {latestPosts.length > 0 && (
-    <section class="posts-section">
-      <div class="posts-container">
-        <h2 class="section-title">最新文章</h2>
-        
-        <div class="posts-list">
-          {latestPosts.map((post, idx) => (
-            <a href={`/posts/${post.id}`} class="post-item" style={`animation-delay: ${idx * 50}ms`}>
-              <div class="post-info">
-                <h3 class="post-title">{post.data.title}</h3>
-                <p class="post-meta">
-                  <span class="post-date">{post.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                  {post.data.category && (
-                    <>
-                      <span class="meta-separator">·</span>
-                      <span class="post-category">{post.data.category}</span>
-                    </>
-                  )}
-                </p>
-              </div>
-              <svg class="post-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          ))}
-        </div>
-        
-        <div class="view-all">
-          <a href="/tags" class="view-all-link">
-            查看全部文章
-            <svg class="view-all-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
-        </div>
+    <section class="py-12">
+      <h2 class="text-center text-sm font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-8">最新文章</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {latestPosts.map((post, idx) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            category={post.data.category}
+            tags={post.data.tags}
+            slug={post.id}
+            image={post.data.image}
+            featured={post.data.featured}
+            index={idx}
+          />
+        ))}
+      </div>
+      
+      <div class="text-center mt-10">
+        <a href="/tags" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-colors">
+          查看全部文章
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
       </div>
     </section>
   )}
 </BaseLayout>
-
-<style>
-  .posts-section {
-    padding: 4rem 0;
-    border-top: 1px solid var(--color-border-light);
-  }
-  
-  .posts-container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  
-  .section-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-muted);
-    margin-bottom: 2rem;
-    opacity: 0.7;
-  }
-  
-  .posts-list {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .post-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--color-border-light);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    animation: fadeIn 0.5s ease-out backwards;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .post-item:hover {
-    padding-left: 0.5rem;
-  }
-  
-  .post-item:hover .post-title {
-    color: var(--color-primary);
-  }
-  
-  .post-item:hover .post-arrow {
-    transform: translateX(4px);
-    opacity: 1;
-  }
-  
-  .post-info {
-    flex: 1;
-    overflow: hidden;
-  }
-  
-  .post-title {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--color-text-primary);
-    margin: 0 0 0.375rem 0;
-    transition: color 0.2s ease;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .post-meta {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .meta-separator {
-    opacity: 0.5;
-  }
-  
-  .post-category {
-    color: var(--color-primary);
-    opacity: 0.8;
-  }
-  
-  .post-arrow {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--color-text-muted);
-    opacity: 0;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-    margin-left: 1rem;
-  }
-  
-  .view-all {
-    margin-top: 2.5rem;
-    text-align: center;
-  }
-  
-  .view-all-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--color-border);
-    border-radius: 2rem;
-    transition: all 0.2s ease;
-  }
-  
-  .view-all-link:hover {
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-  }
-  
-  .view-all-arrow {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.2s ease;
-  }
-  
-  .view-all-link:hover .view-all-arrow {
-    transform: translateY(2px);
-  }
-  
-  @media (max-width: 640px) {
-    .posts-section {
-      padding: 3rem 0;
-    }
-    
-    .post-title {
-      font-size: 1rem;
-      white-space: normal;
-      overflow: visible;
-      text-overflow: clip;
-    }
-    
-    .post-meta {
-      flex-wrap: wrap;
-      font-size: 0.8125rem;
-    }
-    
-    .post-arrow {
-      display: none;
-    }
-  }
-</style>
