@@ -49,7 +49,7 @@
               "format": "unix-time"
             }
           ],
-          "default": "2026-03-28T14:30:11.377Z"
+          "default": "2026-03-28T14:52:36.882Z"
         },
         "modified": {
           "anyOf": [
@@ -68,6 +68,9 @@
           ]
         },
         "cover": {
+          "type": "string"
+        },
+        "image": {
           "type": "string"
         },
         "featured": {

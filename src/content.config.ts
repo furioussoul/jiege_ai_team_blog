@@ -21,6 +21,7 @@ const postSchema = z.object({
   date: z.coerce.date().optional().default(new Date()),
   modified: z.coerce.date().optional(),
   cover: z.string().optional(),
+  image: z.string().optional(), // 支持image字段作为cover的别名
   featured: z.boolean().default(false),
   toc: z.boolean().default(true),
   keywords: z.array(z.string()).optional(),

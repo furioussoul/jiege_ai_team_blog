@@ -1,13 +1,20 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
-// 提取章节号用于语义排序
-function extractChapterNumber(title: string): number | null {
-  // 匹配 "第1章"、"第1-2章"、"chapter-1"、"chapter-1-2"
-  const match = title.match(/第(\d+)|chapter-(\d+)/i);
-  if (match) {
-    return parseInt(match[1] || match[2]);
+// 从标题或文件名提取排序编号
+function extractOrderNumber(title: string, id: string): number | null {
+  // 优先从文件名提取序号（如 "1-xxx.md"、"2-xxx.md"）
+  const fileMatch = id.match(/^(\d+)-/);
+  if (fileMatch) {
+    return parseInt(fileMatch[1]);
   }
+  
+  // 其次从标题提取章节号（如 "第1章"、"第1-2章"、"chapter-1"）
+  const titleMatch = title.match(/第(\d+)|chapter-(\d+)/i);
+  if (titleMatch) {
+    return parseInt(titleMatch[1] || titleMatch[2]);
+  }
+  
   return null;
 }
 
@@ -27,21 +34,21 @@ export async function getAllPosts(): Promise<CollectionEntry<'posts'>[]> {
   return posts
     .filter((post) => !post.data.draft)
     .sort((a, b) => {
-      const chapterA = extractChapterNumber(a.data.title);
-      const chapterB = extractChapterNumber(b.data.title);
+      const orderA = extractOrderNumber(a.data.title, a.id);
+      const orderB = extractOrderNumber(b.data.title, b.id);
       
-      // 都有章节号，按章节排序
-      if (chapterA !== null && chapterB !== null) {
-        return chapterA - chapterB;
+      // 都有编号，按编号排序
+      if (orderA !== null && orderB !== null) {
+        return orderA - orderB;
       }
       
-      // 都无章节号，按日期排序（最新在前）
-      if (chapterA === null && chapterB === null) {
+      // 都无编号，按日期排序（最新在前）
+      if (orderA === null && orderB === null) {
         return b.data.date.valueOf() - a.data.date.valueOf();
       }
       
-      // 有章节号的排前面
-      return chapterA !== null ? -1 : 1;
+      // 有编号的排前面
+      return orderA !== null ? -1 : 1;
     });
 }
 
