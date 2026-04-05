@@ -30,12 +30,12 @@ import { categories } from '../utils/data/categories'
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4 not-prose">
         {categories.map(cat => (
           <div 
-            class="p-4 rounded-lg"
+            class="p-4 rounded-lg border border-[var(--color-border)]"
             style={`background-color: ${cat.color}15`}
           >
             <div class="flex items-center gap-2 mb-2">
               <span class="text-2xl">{cat.icon}</span>
-              <span class="font-semibold">{cat.name}</span>
+              <span class="font-semibold text-[var(--color-text-primary)]">{cat.name}</span>
             </div>
           </div>
         ))}
