@@ -3,7 +3,7 @@ title: "AI学习加速器：4个指令让学习效率提升10倍"
 description: "告别漫无目的的学习，用AI实现精准学、高效学、闭环学。来自OpenAI联合创始人、费曼学习法的实践验证。"
 category: "insights"
 tags: ["AI", "学习方法", "效率提升", "费曼技巧"]
-image: "/images/covers/ai-learning-accelerator.png"
+image: "/images/covers/common.png"
 date: 2026-04-04
 author: "杰哥 AI TEAM"
 ---

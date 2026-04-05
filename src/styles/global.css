@@ -6,15 +6,14 @@
    OpenClaw + Team-LandingPage Design System
    =========================================== */
 
-/* 强制深色主题 - 无light模式切换 */
+/* 支持深色和浅色主题切换 */
 html {
-  color-scheme: dark;
+  color-scheme: dark light;
 }
 
-/* 强制设置 data-theme 为 dark */
-html[data-theme],
-html {
-  data-theme: dark;
+/* 默认深色主题，除非用户切换 */
+html:not([data-theme="light"]) {
+  color-scheme: dark;
 }
 
 body {
@@ -90,6 +89,48 @@ body {
   --duration-slow: 350ms;
   
   color-scheme: dark;
+}
+
+/* Light theme variables */
+[data-theme="light"] {
+  color-scheme: light;
+  
+  /* Primary - Same red signature */
+  --color-primary: #e04848;
+  --color-primary-light: #ff5c5c;
+  --color-primary-dark: #c03838;
+  --color-primary-subtle: rgba(224, 72, 72, 0.1);
+  --color-primary-glow: rgba(224, 72, 72, 0.2);
+  
+  /* Background - Light with subtle warmth */
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f5f5f5;
+  --color-bg-hover: #e5e5e5;
+  
+  /* Text - Dark for contrast */
+  --color-text-primary: #18181b;
+  --color-text-secondary: #3f3f46;
+  --color-text-muted: #71717a;
+  
+  /* Border */
+  --color-border: #e4e4e7;
+  --color-border-light: #f4f4f5;
+  --color-border-strong: #a1a1aa;
+  
+  /* Glass Effect - Light theme */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  
+  /* Shadows - Lighter for light theme */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  
+  /* Card highlight */
+  --card-highlight: rgba(0, 0, 0, 0.02);
 }
 
 /* 基础样式 */
@@ -336,6 +377,39 @@ body {
   
   .glow-btn:hover::before {
     opacity: 0.1;
+  }
+  
+  /* Prose Table Styles - Fix dark mode table text color */
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  
+  .prose thead {
+    border-bottom: 2px solid var(--color-border-strong);
+  }
+  
+  .prose th {
+    color: var(--color-text-primary);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    background-color: var(--color-bg-tertiary);
+  }
+  
+  .prose td {
+    color: var(--color-text-primary);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .prose tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .prose tbody tr:hover {
+    background-color: var(--color-bg-hover);
   }
 }
 
